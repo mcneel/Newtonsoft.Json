@@ -363,7 +363,9 @@ namespace Newtonsoft.Json.Utilities
         public static T[] ArrayEmpty<T>()
         {
             T[] array = Enumerable.Empty<T>() as T[];
-            Debug.Assert(array != null);
+            // 8 Feb 2023 S. Baer - Remove the Debug.Assert
+            // .NET 7.0 now returns null
+            // Debug.Assert(array != null);
             // Defensively guard against a version of Linq where Enumerable.Empty<T> doesn't
             // return an array, but throw in debug versions so a better strategy can be
             // used if that ever happens.
